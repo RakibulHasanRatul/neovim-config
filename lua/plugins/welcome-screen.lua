@@ -52,9 +52,9 @@ return {
 				local bufname = vim.fn.bufname(buf_number)
 				local buftype = vim.fn.getbufvar(buf_number, "&buftype")
 
-				-- if bufname == "" and buftype == "" then
-				-- 	vim.cmd("ALpha")
-				-- end
+				if bufname == "" and buftype == "" then
+					vim.cmd("ALpha")
+				end
 
 				-- Check if we opened with a directory argument
 				if vim.fn.isdirectory(bufname) == 1 then
