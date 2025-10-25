@@ -15,7 +15,7 @@ vim.opt.mouse = "a"
 -- Indentation
 vim.opt.smartindent = true
 vim.opt.autoindent = true
-vim.opt.tabstop = 4
+vim.opt.tabstop = 4 -- default for all files
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
@@ -53,3 +53,7 @@ vim.opt.completeopt = "menu,menuone,noselect"
 
 -- auto session options
 vim.o.sessionoptions = "buffers,curdir,tabpages,winpos,winsize,localoptions"
+
+-- Disable netrw completely
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

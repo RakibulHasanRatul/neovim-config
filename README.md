@@ -45,6 +45,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **UI Components**: [Noice](https://github.com/folke/noice.nvim), [Dressing](https://github.com/stevearc/dressing.nvim), [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - **Undo Tree**: [undotree](https://github.com/mbbill/undotree)
 - **Show keymaps**: [which-key.nvim](https://github.com/folke/which-key.nvim)
+- **Welcome Screen**: [alpha-nvim](https://github.com/goolord/alpha-nvim)
 
 ## Installation
 

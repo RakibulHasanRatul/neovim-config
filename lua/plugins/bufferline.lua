@@ -6,7 +6,12 @@ return {
 	config = function()
 		require("bufferline").setup({
 			options = {
-				mode = "buffers", -- set to "tabs" to only show tabpages instead
+				mode = "buffers",
+
+				-- use underline indicator
+				indicator = {
+					style = "underline",
+				},
 
 				-- Diagnostics with icons
 				diagnostics = "nvim_lsp",
@@ -40,6 +45,24 @@ return {
 				show_buffer_close_icons = true,
 				show_close_icon = true,
 				color_icons = true,
+
+				-- filter out empty direcotry buffers
+				custom_filter = function(buf_number, buf_numbers)
+					local bufname = vim.fn.bufname(buf_number)
+					local buftype = vim.fn.getbufvar(buf_number, "&buftype")
+
+					-- Hide empty [No Name] buffers
+					if bufname == "" and buftype == "" then
+						return false
+					end
+
+					-- Hide directory buffers
+					if vim.fn.isdirectory(bufname) == 1 then
+						return false
+					end
+
+					return true
+				end,
 			},
 		})
 
