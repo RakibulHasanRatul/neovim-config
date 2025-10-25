@@ -45,7 +45,7 @@ return {
 					leave_dirs_open = false, -- Don't auto-expand directories
 				},
 				group_empty_dirs = false,
-				hijack_netrw_behavior = "open_default",
+				hijack_netrw_behavior = "disabled",
 				use_libuv_file_watcher = false,
 				window = {
 					mappings = {

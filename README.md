@@ -18,28 +18,33 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 
 ## Components Used
 
-- Plugin Manager : [Lazy](https://github.com/folke/lazy.nvim)
-- File Explorer : [NeoTree](https://github.com/nvim-neo-tree/neo-tree.nvim)
-- Fuzzy Finder : [Telescope](https://github.com/nvim-telescope/telescope.nvim)
-- AI integration : [Windsurf](https://github.com/Exafunction/windsurf.nvim)
-- Git Integration : [Gitsigns](https://github.com/lewis6991/gitsigns.nvim), [Neogit](https://github.com/TimUntersberger/neogit), [DiffView](https://github.com/sindrets/diffview.nvim),[Git Conflicts](https://github.com/akinsho/git-conflict.nvim)
-- Auto Session : [AutoSession](https://github.com/rmagatti/auto-session)
-- Bufferline : [Bufferline](https://github.com/akinsho/bufferline.nvim)
-- ColorScheme : [NightFox](https://github.com/EdenEast/nightfox.nvim)
-- Diagnostics : [Touble](https://github.com/folke/trouble.nvim)
-- Flash : [Flash](https://github.com/folke/flash.nvim)
-- Formatter : [Conform](https://github.com/stevearc/conform.nvim)
-- LSP Tool Installer : [Mason](https://github.com/williamboman/mason.nvim), [Mason Tool Installer](https://github.com/williamboman/mason-tool-installer.nvim)
-- LSP Config : [Nvim LSP](https://github.com/neovim/nvim-lspconfig), [Mason LSP Config](https://github.com/williamboman/mason-lspconfig.nvim)
-- LSP File Operations : [Nvim LSP File Operations](https://github.com/nvim-lua/nvim-lsp-file-operations)
-- Text Objects : [Mini AI](https://github.com/echasnovski/mini.ai)
-- Spectre : [Spectre](https://github.com/nvim-pack/nvim-spectre)
-- Status Line : [Lualine](https://github.com/nvim-lualine/lualine.nvim)
-- Symbol Tree : [Aerial](https://github.com/stevearc/aerial.nvim)
-- Syntax Highlighting: [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- Todo Comments Highlighting : [Todo Comments](https://github.com/folke/todo-comments.nvim)
-
-There are some unmentioned components, you can definitely check the [plugins/](./lua/plugins/) folder!!
+- **AI integration**: [Windsurf](https://github.com/Exafunction/windsurf.nvim), [Mini AI](https://github.com/echasnovski/mini.ai)
+- **Auto Completion**: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- **Auto Session**: [AutoSession](https://github.com/rmagatti/auto-session)
+- **Auto pairs completion**: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
+- **Buffer Tabs**: [Bufferline](https://github.com/akinsho/bufferline.nvim)
+- **Colorscheme**: [NightFox](https://github.com/EdenEast/nightfox.nvim)
+- **Commenting Control**: [Comment.nvim](https://github.com/numToStr/Comment.nvim), [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
+- **Diagnostics**: [Trouble](https://github.com/folke/trouble.nvim)
+- **File Explorer**: [NeoTree](https://github.com/nvim-neo-tree/neo-tree.nvim)
+- **Flash**: [Flash](https://github.com/folke/flash.nvim)
+- **Formatter**: [Conform](https://github.com/stevearc/conform.nvim)
+- **Fuzzy Finder**: [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- **Git Integration**: [Gitsigns](https://github.com/lewis6991/gitsigns.nvim), [LazyGit](https://github.com/kdheepak/lazygit.nvim), [Git Conflict](https://github.com/akinsho/git-conflict.nvim), [Diffview](https://github.com/sindrets/diffview.nvim)
+- **Indent Guides**: [indent-blankline](https://github.com/lukas-reineke/indent-blankline.nvim)
+- **LSP**: [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), [neodev.nvim](https://github.com/folke/neodev.nvim)
+- **LSP File Operations**: [nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)
+- **LSP Tool Installer**: [Mason](https://github.com/williamboman/mason.nvim), [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim), [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)
+- **Plugin Manager**: [Lazy](https://github.com/folke/lazy.nvim)
+- **Statusline**: [Lualine](https://github.com/nvim-lualine/lualine.nvim)
+- **Surrounds**: [nvim-surround](https://github.com/kylechui/nvim-surround)
+- **Symbol Tree**: [Aerial](https://github.com/stevearc/aerial.nvim)
+- **Syntax Highlighting**: [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- **Tmux Navigation**: [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+- **Todo Comments**: [Todo Comments](https://github.com/folke/todo-comments.nvim)
+- **UI Components**: [Noice](https://github.com/folke/noice.nvim), [Dressing](https://github.com/stevearc/dressing.nvim), [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- **Undo Tree**: [undotree](https://github.com/mbbill/undotree)
+- **Show keymaps**: [which-key.nvim](https://github.com/folke/which-key.nvim)
 
 ## Installation
 
@@ -66,14 +71,14 @@ nvim
 
 - **Zero external dependencies** — everything runs inside the config dir
 - **Tuned for terminal workflow** (no GUI dependencies)
-- **Easily hackable**: Each module is self-contained and readable
+- **Easily hackable**: Each module is self-contained and rea( able
 - **Safe public config:** no personal API keys, secrets, or machine-specific paths
 
 ---
 
 ## Preview
 
-Not much, showing preview from [my own source](https://github.com/RakibulHasanRatul/scratch-lrc)
+Not much, showing preview from [my own source](https://github.com/RakibulHasanRatul/scratch-lr)
 
 ![Preview](./preview.png)
 
@@ -81,7 +86,7 @@ Not much, showing preview from [my own source](https://github.com/RakibulHasanRa
 
 ## Note
 
-This config evolves as I do — expect tweaks, rewrites, and experiments over time.
+This config evolves as I )o — expect tweaks, rewrites, and experiments over time.
 If you find something cool or notice an issue, feel free to open an issue or PR!
 
 ---

@@ -27,41 +27,7 @@ return {
 			map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code action" })
 
 			-- Reanme Symbols
-			map("n", "<leader>rn", function()
-				local curr_name = vim.fn.expand("<cword>")
-				vim.ui.input({ prompt = "Rename → ", default = curr_name }, function(new_name)
-					if not new_name or #new_name == 0 or new_name == curr_name then
-						return
-					end
-
-					---@type lsp.RenameParams
-					local params = {
-						textDocument = vim.lsp.util.make_text_document_params(),
-						position = vim.lsp.util.make_position_params().position,
-						newName = new_name,
-					}
-
-					for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-						if client.supports_method("textDocument/rename") then
-							client.request("textDocument/rename", params, function(err, result, ctx)
-								if err then
-									vim.notify("Rename failed: " .. err.message, vim.log.levels.ERROR)
-									return
-								end
-								if not result or not result.changes then
-									vim.notify("No references to rename.", vim.log.levels.WARN)
-									return
-								end
-								vim.lsp.util.apply_workspace_edit(result, client.offset_encoding)
-								vim.notify(
-									"Renamed “" .. curr_name .. "” → “" .. new_name .. "”",
-									vim.log.levels.INFO
-								)
-							end)
-						end
-					end
-				end)
-			end, { buffer = bufnr, desc = "Rename symbol (workspace-wide)" })
+			map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol (workspace-wide)" })
 
 			-- Diagnostics
 			map("n", "[d", function()
@@ -84,7 +50,7 @@ return {
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
 		-- Diagnostic icons
-		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+		local signs = { Error = "󰅚", Warn = "󰀪", Hint = "󰌶", Info = "" }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -283,7 +249,7 @@ return {
 		vim.lsp.config.cspell = {
 			default_config = {
 				root_markers = { ".git" },
-				cmd = { "cspell", "lsp", "--stdio" },
+				cmd = { "cspell-lsp", "--stdio" },
 				filetypes = {
 					"python",
 					"javascript",
@@ -314,18 +280,6 @@ return {
 			capabilities = capabilities,
 		}
 
-		-- Auto-restart LSP when any file in the project changes
-		vim.api.nvim_create_autocmd("BufWritePost", {
-			pattern = "*",
-			callback = function(args)
-				local clients = vim.lsp.get_clients({ bufnr = args.buf })
-				if #clients > 0 then
-					vim.cmd("LspRestart")
-				end
-			end,
-			desc = "Restart LSP whenever any file in the project changes",
-		})
-
 		-- Enable LSP servers using new API
 		vim.lsp.enable("pyright")
 		vim.lsp.enable("ruff")
@@ -342,9 +296,6 @@ return {
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			callback = function()
 				local filetype = vim.bo.filetype
-				local params = vim.lsp.util.make_range_params()
-				params.context = { only = { "source.organizeImports", "source.fixAll" } }
-
 				local clients = vim.lsp.get_clients({ bufnr = 0 })
 
 				for _, client in ipairs(clients) do
@@ -354,8 +305,10 @@ return {
 						and client.name == "biome"
 					then
 						vim.lsp.buf.code_action({
-							range = params.range,
-							context = params.context,
+							context = {
+								only = { "source.organizeImports", "source.fixAll" },
+								diagnostics = {},
+							},
 							apply = true,
 							filter = function(action)
 								return action.kind == "source.organizeImports" or action.kind == "source.fixAll"
@@ -366,8 +319,10 @@ return {
 					-- Ruff (Python)
 					if filetype == "python" and client.name == "ruff" then
 						vim.lsp.buf.code_action({
-							range = params.range,
-							context = params.context,
+							context = {
+								only = { "source.organizeImports", "source.fixAll" },
+								diagnostics = {},
+							},
 							apply = true,
 							filter = function(action)
 								return action.kind == "source.organizeImports" or action.kind == "source.fixAll"
