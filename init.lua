@@ -1,0 +1,6 @@
+require("config.core-config")
+require("config.indent-config")
+require("config.keymaps")
+require("config.auto-commands")
+require("config.lazy")
+require("config.python")
