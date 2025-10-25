@@ -10,6 +10,13 @@ return {
 				vim.cmd("silent! %bwipeout!")
 			end,
 		})
+		-- discard all outputs
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "SessionLoadPost",
+			callback = function()
+				vim.cmd("silent! %bwipeout!")
+			end,
+		})
 		auto_session.setup({
 			log_level = "info",
 			auto_session_enable_last_session = false, -- don't auto-load last session globally
