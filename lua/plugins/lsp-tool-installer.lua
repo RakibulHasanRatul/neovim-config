@@ -2,7 +2,7 @@ return {
 	-- lsp installer
 	{
 		"williamboman/mason.nvim",
-		cmd = "Mason",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
 		keys = {
 			{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
 		},
@@ -47,6 +47,7 @@ return {
 			"williamboman/mason.nvim",
 			"neovim/nvim-lspconfig",
 		},
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
