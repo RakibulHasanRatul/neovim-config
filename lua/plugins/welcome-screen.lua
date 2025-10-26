@@ -15,12 +15,10 @@ return {
  ██████   ██  ███████████████   ██ █████████████████
     ]]
 		dashboard.section.header.val = vim.split(logo .. "\n" .. os.date(" %Y-%m-%d-%A %H:%M:%S "), "\n")
-		local init_path = vim.fn.stdpath("config")
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "🗁  Open File Explorer", ":Neotree toggle<CR>"),
 			dashboard.button("r", "󰄉  Recent files", ":Telescope oldfiles<CR>"),
 			dashboard.button("u", "󱐥  Update plugins", "<cmd>Lazy update<CR>"),
-			dashboard.button("c", "󰈞  Config", ":cd " .. init_path .. " | e init.lua<CR>"),
 			dashboard.button("q", "󰿅  Quit", "<cmd>qa<CR>"),
 		}
 		vim.api.nvim_set_hl(0, "AlphaLogo", { fg = "#95d3bf" })
