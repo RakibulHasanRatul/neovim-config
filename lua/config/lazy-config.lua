@@ -14,7 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Plugins will be loaded from lua/plugins/ directory
-require("lua.config.lazy-config").setup("plugins", {
+require("lazy").setup("plugins", {
 	checker = {
 		enabled = true,
 		notify = false,
