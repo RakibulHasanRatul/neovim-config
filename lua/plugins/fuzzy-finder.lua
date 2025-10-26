@@ -19,6 +19,15 @@ return {
 		local actions = require("telescope.actions")
 		telescope.setup({
 			defaults = {
+				file_ignore_patterns = {
+					"node_modules/",
+					"%.git/",
+					"dist/",
+					"build/",
+					".venv/",
+					"__pycache__/",
+					"%.lock",
+				},
 				path_display = { "truncate" },
 				sorting_strategy = "ascending",
 				layout_config = {
