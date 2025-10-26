@@ -25,7 +25,7 @@ return {
 		}
 		vim.api.nvim_set_hl(0, "AlphaLogo", { fg = "#95d3bf" })
 		dashboard.section.buttons.opts.hl = "AlphaLogo"
-		dashboard.opts.layout[1].val = 4
+		dashboard.opts.layout[1].val = 8
 		return dashboard
 	end,
 	config = function(_, dashboard)
