@@ -5,7 +5,6 @@ return {
 	config = function()
 		require("lualine").setup({
 			options = {
-				theme = "carbonfox",
 				-- Use nice arrow-like separators
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },

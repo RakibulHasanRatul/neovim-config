@@ -8,11 +8,6 @@ return {
 			options = {
 				mode = "buffers",
 
-				-- use underline indicator
-				indicator = {
-					style = "underline",
-				},
-
 				-- Diagnostics with icons
 				diagnostics = "nvim_lsp",
 				diagnostics_update_in_insert = false,
@@ -41,10 +36,10 @@ return {
 
 				-- UI Settings
 				separator_style = "thin", -- "slant" | "slope" | "thick" | "thin"
-				always_show_bufferline = true,
-				show_buffer_close_icons = true,
-				show_close_icon = true,
 				color_icons = true,
+				show_buffer_close_icons = true,
+				show_close_icon = false,
+				always_show_bufferline = true,
 
 				-- filter out empty direcotry buffers
 				custom_filter = function(buf_number, buf_numbers)
@@ -63,6 +58,11 @@ return {
 
 					return true
 				end,
+
+				-- better tab names
+				numbers = "none",
+				show_tab_indicators = true,
+				enforce_regular_tabs = false,
 			},
 		})
 

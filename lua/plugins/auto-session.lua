@@ -22,7 +22,7 @@ return {
 			auto_session_enable_last_session = false, -- don't auto-load last session globally
 			auto_save = true, -- enable auto-save
 			auto_restore = true, -- let auto-session handle restoration
-			suppress_dirs = {
+			auto_session_suppress_dirs = {
 				vim.fn.expand("~") .. "/Downloads/",
 				vim.fn.expand("~") .. "/Music/",
 				vim.fn.expand("~") .. "/Desktop/",
