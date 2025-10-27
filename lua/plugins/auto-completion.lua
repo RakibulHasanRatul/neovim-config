@@ -41,26 +41,6 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(), -- Show completion
 				["<C-e>"] = cmp.mapping.abort(), -- Close completion
 				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm selection
-				-- tab and shift tab mapping for selecting and unselecting
-				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
-					else
-						fallback()
-					end
-				end, { "i", "s", replace_keycodes = false }),
-
-				["<S-Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item()
-					elseif luasnip.jumpable(-1) then
-						luasnip.jump(-1)
-					else
-						fallback()
-					end
-				end, { "i", "s", replace_keycodes = false }),
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp", priority = 1000 },
