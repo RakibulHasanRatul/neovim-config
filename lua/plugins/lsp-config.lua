@@ -9,7 +9,7 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		-- LSP keybindings (applied when LSP attaches to buffer)
-		local on_attach = function(_, bufnr) -- Changed 'client' to '_' since unused
+		local on_attach = function(_, bufnr)
 			local map = vim.keymap.set
 
 			-- Navigation
@@ -51,17 +51,20 @@ return {
 
 		-- Diagnostic icons
 		local signs = { Error = "󰅚", Warn = "󰀪", Hint = "󰌶", Info = "" }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
 
 		-- Diagnostic config
 		vim.diagnostic.config({
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = signs.Error,
+					[vim.diagnostic.severity.WARN] = signs.Warn,
+					[vim.diagnostic.severity.HINT] = signs.Hint,
+					[vim.diagnostic.severity.INFO] = signs.Info,
+				},
+			},
 			virtual_text = {
 				prefix = "●",
 			},
-			signs = true,
 			underline = true,
 			update_in_insert = false,
 			severity_sort = true,
@@ -92,14 +95,25 @@ return {
 				filetypes = { "python" },
 			},
 			settings = {
+				pyright = {
+					disableOrganizeImports = true, -- for ruff
+				},
 				python = {
 					pythonPath = get_python_path(),
 					analysis = {
-						typeCheckingMode = "basic",
+						typeCheckingMode = "strict",
 						autoSearchPaths = true,
 						useLibraryCodeForTypes = true,
 						diagnosticMode = "workspace",
 						autoImportCompletions = true,
+						autoImportExactMatchOnly = true,
+						-- stubPath = "typings",
+						extraPaths = {
+							"./",
+							"./src",
+							"./packages",
+						},
+						importFormat = "relativeOrAbsolute",
 					},
 				},
 			},
@@ -272,11 +286,59 @@ return {
 		-- Biome
 		vim.lsp.config.biome = {
 			default_config = {
-				root_markers = { "biome.json", ".git" },
+				root_markers = {
+					"package-lock.json",
+					"yarn.lock",
+					"pnpm-lock.yaml",
+					"bun.lockb",
+					"bun.lock",
+					"biome.json",
+				},
 				cmd = { "biome", "lsp-proxy" },
-				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "css", "html" },
+				filetypes = {
+					"astro",
+					"css",
+					"graphql",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"json",
+					"jsonc",
+					"svelte",
+					"typescript",
+					"typescript.tsx",
+					"typescriptreact",
+					"vue",
+				},
 			},
-			on_attach = on_attach,
+			on_attach = function(client, bufnr)
+				-- Call the default on_attach first
+				on_attach(client, bufnr)
+
+				-- Add organize imports and fix all on save
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					buffer = bufnr,
+					callback = function()
+						-- Organize imports
+						vim.lsp.buf.code_action({
+							context = {
+								only = { "source.organizeImports" },
+								diagnostics = {},
+							},
+							apply = true,
+						})
+
+						-- Fix all
+						vim.lsp.buf.code_action({
+							context = {
+								only = { "source.fixAll" },
+								diagnostics = {},
+							},
+							apply = true,
+						})
+					end,
+				})
+			end,
 			capabilities = capabilities,
 		}
 
@@ -291,48 +353,6 @@ return {
 		vim.lsp.enable("tailwindcss")
 		vim.lsp.enable("cspell")
 		vim.lsp.enable("biome")
-
-		-- Auto-run Biome and Ruff code actions on save
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			callback = function()
-				local filetype = vim.bo.filetype
-				local clients = vim.lsp.get_clients({ bufnr = 0 })
-
-				for _, client in ipairs(clients) do
-					-- Biome (JavaScript / TypeScript)
-					if
-						vim.tbl_contains({ "javascript", "typescript", "javascriptreact", "typescriptreact" }, filetype)
-						and client.name == "biome"
-					then
-						vim.lsp.buf.code_action({
-							context = {
-								only = { "source.organizeImports", "source.fixAll" },
-								diagnostics = {},
-							},
-							apply = true,
-							filter = function(action)
-								return action.kind == "source.organizeImports" or action.kind == "source.fixAll"
-							end,
-						})
-					end
-
-					-- Ruff (Python)
-					if filetype == "python" and client.name == "ruff" then
-						vim.lsp.buf.code_action({
-							context = {
-								only = { "source.organizeImports", "source.fixAll" },
-								diagnostics = {},
-							},
-							apply = true,
-							filter = function(action)
-								return action.kind == "source.organizeImports" or action.kind == "source.fixAll"
-							end,
-						})
-					end
-				end
-			end,
-			desc = "Auto-run LSP code actions (fixAll + organizeImports) on save for Biome & Ruff",
-		})
 
 		-- Rounded borders for hover and signature help
 		require("lspconfig.ui.windows").default_options.border = "rounded"

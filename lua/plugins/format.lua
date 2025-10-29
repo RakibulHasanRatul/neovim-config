@@ -15,7 +15,7 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				python = { "ruff_format", "ruff_organize_imports" },
+				python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 				javascript = { "biome" },
 				typescript = { "biome" },
 				javascriptreact = { "biome" },
@@ -25,6 +25,18 @@ return {
 				html = { "biome" },
 				lua = { "stylua" },
 				markdown = { "prettier" },
+			},
+			formatters = {
+				biome = {
+					args = {
+						"check",
+						"--write",
+						"--unsafe",
+						"--organize-imports-enabled=true",
+						"--stdin-file-path",
+						"$FILENAME",
+					},
+				},
 			},
 			format_on_save = {
 				timeout_ms = 500,

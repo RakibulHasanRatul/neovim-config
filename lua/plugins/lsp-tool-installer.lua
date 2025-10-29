@@ -3,6 +3,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+		event = { "BufReadPre", "BufNewFile" },
 		keys = {
 			{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
 		},
@@ -23,6 +24,7 @@ return {
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "williamboman/mason.nvim" },
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
@@ -61,6 +63,7 @@ return {
 					"tailwindcss", -- Tailwind CSS (for your TSX)
 					"biome", -- Biome LSP
 					"cspell_ls", -- Code Spell Checker
+					"fish_lsp", -- fish shell support!
 				},
 				automatic_installation = true,
 			})
