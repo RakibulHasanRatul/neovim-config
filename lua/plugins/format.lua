@@ -26,18 +26,6 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettier" },
 			},
-			formatters = {
-				biome = {
-					args = {
-						"check",
-						"--write",
-						"--unsafe",
-						"--organize-imports-enabled=true",
-						"--stdin-file-path",
-						"$FILENAME",
-					},
-				},
-			},
 			format_on_save = {
 				timeout_ms = 500,
 				lsp_fallback = true,
