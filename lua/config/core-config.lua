@@ -31,7 +31,6 @@ vim.opt.scrolloff = 8 -- Keep 8 lines above/below cursor
 vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 vim.opt.wrap = true
 vim.opt.breakindent = true -- Wrapped lines preserve indentation
-vim.opt.showmode = false -- Don't show mode (status line shows it)
 vim.opt.pumheight = 10 -- Max items in completion popup
 
 -- Splits
@@ -52,7 +51,7 @@ vim.opt.timeoutlen = 300 -- Faster key sequence completion
 vim.opt.completeopt = "menu,menuone,noselect"
 
 -- auto session options
-vim.o.sessionoptions = "buffers,curdir,tabpages,winpos,winsize,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Disable netrw completely
 vim.g.loaded_netrw = 1
