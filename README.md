@@ -30,7 +30,6 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Diagnostics**: [Trouble](https://github.com/folke/trouble.nvim)
 - **Emmet**: [emmet-vim](https://github.com/mattn/emmet-vim)
 - **File Explorer**: [NeoTree](https://github.com/nvim-neo-tree/neo-tree.nvim)
-- **Flash**: [Flash](https://github.com/folke/flash.nvim)
 - **Formatter**: [Conform](https://github.com/stevearc/conform.nvim)
 - **Fuzzy Finder**: [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 - **Git Integration**: [Gitsigns](https://github.com/lewis6991/gitsigns.nvim), [LazyGit](https://github.com/kdheepak/lazygit.nvim), [Git Conflict](https://github.com/akinsho/git-conflict.nvim), [Diffview](https://github.com/sindrets/diffview.nvim)
