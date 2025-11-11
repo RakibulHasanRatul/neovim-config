@@ -8,47 +8,6 @@ return {
 	config = function()
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-		-- Helper function to run code actions on save
-		local function code_action_on_save(client, bufnr, actions)
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				buffer = bufnr,
-				callback = function()
-					-- Get all code actions for the entire document
-					local params = {
-						textDocument = vim.lsp.util.make_text_document_params(bufnr),
-						range = {
-							start = { line = 0, character = 0 },
-							["end"] = { line = vim.api.nvim_buf_line_count(bufnr), character = 0 },
-						},
-						context = {
-							triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Automatic,
-							diagnostics = vim.diagnostic.get(bufnr),
-							only = actions,
-						},
-					}
-
-					local results = vim.lsp.buf_request_sync(bufnr, "textDocument/codeAction", params, 1000)
-					if not results or vim.tbl_isempty(results) then
-						return
-					end
-
-					-- Apply all matching code actions
-					for _, result in pairs(results) do
-						for _, action in pairs(result.result or {}) do
-							if action.edit then
-								local offset_encoding = client and client.offset_encoding or "utf-16"
-								vim.lsp.util.apply_workspace_edit(action.edit, offset_encoding)
-							end
-							if action.command then
-								local command = type(action.command) == "table" and action.command or action
-								vim.lsp.cmd.execute_command(command)
-							end
-						end
-					end
-				end,
-			})
-		end
-
 		-- LSP keybindings (applied when LSP attaches to buffer)
 		local on_attach = function(_, bufnr)
 			local map = vim.keymap.set
@@ -369,15 +328,7 @@ return {
 					"vue",
 				},
 			},
-			on_attach = function(client, bufnr)
-				on_attach(client, bufnr) -- Call the standard on_attach first
-
-				-- Add Biome-specific code actions on save
-				code_action_on_save(client, bufnr, {
-					"source.organizeImports.biome",
-					"source.fixAll.biome",
-				})
-			end,
+			on_attach = on_attach,
 			capabilities = capabilities,
 		}
 

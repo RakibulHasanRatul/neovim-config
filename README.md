@@ -20,7 +20,6 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 
 - **AI integration**: [Windsurf](https://github.com/Exafunction/windsurf.nvim), [Mini AI](https://github.com/echasnovski/mini.ai)
 - **Auto Completion**: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- **Auto Session**: [AutoSession](https://github.com/rmagatti/auto-session)
 - **Auto pairs completion**: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - **Auto Tag for TS/JS/TSX/JSX/HTML**:[nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - **Buffer Tabs**: [Bufferline](https://github.com/akinsho/bufferline.nvim)

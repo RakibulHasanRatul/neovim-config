@@ -18,7 +18,7 @@ return {
 				lualine_c = {
 					{
 						"filename",
-						-- path = 1, -- relative path
+						path = 1, -- relative path
 						symbols = {
 							readonly = "  ",
 							unnamed = "[No Name]",
