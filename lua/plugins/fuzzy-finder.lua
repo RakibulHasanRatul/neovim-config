@@ -18,6 +18,7 @@ return {
 		local actions = require("telescope.actions")
 		telescope.setup({
 			defaults = {
+				find_command = { "rg", "--files", "--hidden", "--no-ignore", "--no-ignore-parent", "-u" },
 				file_ignore_patterns = {
 					"node_modules/",
 					"%.git/",
@@ -29,15 +30,6 @@ return {
 				},
 				path_display = { "truncate" },
 				sorting_strategy = "ascending",
-				layout_config = {
-					horizontal = {
-						preview_width = 0.55,
-						preview_cutoff = 120,
-					},
-					width = 0.87,
-					height = 0.80,
-					anchor = "CENTER",
-				},
 				mappings = {
 					i = {
 						["<C-j>"] = actions.move_selection_next,
@@ -47,11 +39,18 @@ return {
 					},
 				},
 			},
+			pickers = {
+				find_files = {
+					hidden = true,
+					no_ignore = true,
+					no_ignore_parent = true,
+				},
+			},
 		})
 		telescope.load_extension("fzf")
 
 		-- Set ripgrep as grep program for better search
-		vim.opt.grepprg = "rg --vimgrep --smart-case --hidden"
+		vim.opt.grepprg = "rg --vimgrep --smart-case -u --hidden"
 		vim.opt.grepformat = "%f:%l:%c:%m"
 	end,
 }

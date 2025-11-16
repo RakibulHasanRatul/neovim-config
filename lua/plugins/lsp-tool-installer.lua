@@ -42,10 +42,10 @@ return {
 			end
 
 			local wanted_tools = {
-				"ruff", -- Python
-				"stylua", -- Lua
-				"biome", -- JS/TS/JSON
-				"prettier", -- Markdown
+				"ruff",
+				"stylua",
+				"biome",
+				"clang-format",
 			}
 
 			require("mason-tool-installer").setup({
@@ -92,6 +92,7 @@ return {
 				"biome",
 				"cspell_ls",
 				"fish_lsp",
+				"clangd",
 			}
 
 			local mason_lspconfig = require("mason-lspconfig")

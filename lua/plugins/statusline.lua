@@ -9,7 +9,7 @@ return {
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				globalstatus = true,
-				disabled_filetypes = { "neo-tree", "alpha", "lazy", "dashboard" },
+				disabled_filetypes = {  "alpha", "dashboard" },
 				always_divide_middle = true,
 			},
 			sections = {
