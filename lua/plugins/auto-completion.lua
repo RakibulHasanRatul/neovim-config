@@ -1,86 +1,87 @@
 return {
-	"hrsh7th/nvim-cmp",
-	event = "InsertEnter",
-	dependencies = {
-		"hrsh7th/cmp-nvim-lsp", -- LSP completion source
-		"hrsh7th/cmp-buffer", -- Buffer completion source
-		"hrsh7th/cmp-path", -- Path completion source
-		"hrsh7th/cmp-cmdline", -- Command line completion
-		"saadparwaiz1/cmp_luasnip", -- Snippet completion source
-		"L3MON4D3/LuaSnip", -- Snippet engine
-		"rafamadriz/friendly-snippets", -- Pre-made snippets
-		"onsails/lspkind.nvim", -- VS Code-like icons
-	},
-	config = function()
-		local cmp = require("cmp")
-		local luasnip = require("luasnip")
-		local lspkind = require("lspkind")
+  "saghen/blink.cmp",
+  event = "InsertEnter",
+  version = "1.*",
+  dependencies = {
+    {
+      "L3MON4D3/LuaSnip",
+      version = "2.*",
+      build = (function()
+        -- Build Step is needed for regex support in snippets.
+        -- Remove the condition below to re-enable on windows.
+        if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+          return
+        end
+        return "make install_jsregexp"
+      end)(),
+      dependencies = {
+        {
+          "rafamadriz/friendly-snippets",
+          config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+          end,
+        },
+      },
+    },
+  },
+  --- @module 'blink.cmp'
+  --- @type blink.cmp.Config
+  opts = {
+    keymap = {
+      preset = "none", -- Start from scratch to match your old keymaps
+      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+      ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-e>"] = { "hide", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
 
-		-- Load VS Code style snippets
-		require("luasnip.loaders.from_vscode").lazy_load()
+      -- Snippet navigation
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+    },
 
-		cmp.setup({
-			snippet = {
-				expand = function(args)
-					luasnip.lsp_expand(args.body)
-				end,
-			},
-			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
-			},
-			completion = {
-				completeopt = "menu,menuone,noinsert", -- Auto-select first item
-			},
-			preselect = cmp.PreselectMode.Item, -- Preselect first item
-			mapping = cmp.mapping.preset.insert({
-				["<C-k>"] = cmp.mapping.select_prev_item(), -- Previous suggestion
-				["<C-j>"] = cmp.mapping.select_next_item(), -- Next suggestion
-				["<C-b>"] = cmp.mapping.scroll_docs(-4),
-				["<C-f>"] = cmp.mapping.scroll_docs(4),
-				["<C-Space>"] = cmp.mapping.complete(), -- Show completion
-				["<C-e>"] = cmp.mapping.abort(), -- Close completion
-				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Confirm selection
-			}),
-			sources = cmp.config.sources({
-				{ name = "nvim_lsp", priority = 1000 },
-				{ name = "luasnip", priority = 750 },
-				{ name = "buffer", priority = 500 },
-				{ name = "path", priority = 250 },
-			}),
-			formatting = {
-				format = lspkind.cmp_format({
-					mode = "symbol_text",
-					maxwidth = 50,
-					ellipsis_char = "...",
-					menu = {
-						nvim_lsp = "[LSP]",
-						luasnip = "[Snip]",
-						buffer = "[Buf]",
-						path = "[Path]",
-					},
-				}),
-			},
-			experimental = {
-				ghost_text = true, -- Show preview of completion
-			},
-		})
+    appearance = {
+      nerd_font_variant = "mono",
+    },
 
-		-- Command line completion
-		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				{ name = "path" },
-				{ name = "cmdline" },
-			}),
-		})
+    completion = {
+      menu = {
+        border = "rounded",
+        draw = {
+          columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
+        },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
+        window = {
+          border = "rounded",
+        },
+      },
+      ghost_text = {
+        enabled = true,
+      },
+    },
 
-		-- Search completion
-		cmp.setup.cmdline("/", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = {
-				{ name = "buffer" },
-			},
-		})
-	end,
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
+    },
+
+    snippets = {
+      preset = "luasnip",
+    },
+
+    fuzzy = {
+      implementation = "lua",
+    },
+
+    signature = {
+      enabled = true,
+      window = {
+        border = "rounded",
+      },
+    },
+  },
 }

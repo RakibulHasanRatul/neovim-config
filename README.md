@@ -18,11 +18,12 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 
 ## Components Used
 
-- **AI integration**: [Windsurf](https://github.com/Exafunction/windsurf.nvim), [Mini AI](https://github.com/echasnovski/mini.ai)
-- **Auto Completion**: [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- **AI integration**: [Windsurf](https://github.com/Exafunction/windsurf.nvim),
+- **Auto Completion**: [blink.cmp](https://github.com/saghen/blink.cmp)
 - **Auto pairs completion**: [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - **Auto Tag for TS/JS/TSX/JSX/HTML**:[nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - **Buffer Tabs**: [Bufferline](https://github.com/akinsho/bufferline.nvim)
+- **Better Text Objects**: [Mini AI](https://github.com/echasnovski/mini.ai)
 - **Colorizer**: [nvim-colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua)
 - **Colorscheme**: [NightFox](https://github.com/EdenEast/nightfox.nvim)
 - **Commenting Control**: [Comment.nvim](https://github.com/numToStr/Comment.nvim), [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
