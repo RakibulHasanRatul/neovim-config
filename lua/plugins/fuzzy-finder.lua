@@ -3,15 +3,15 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		"nvim-tree/nvim-web-devicons",
 	},
 	keys = {
-		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-		{ "<leader>fs", "<cmd>Telescope live_grep<cr>", desc = "Live grep (search text)" },
-		{ "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Find word under cursor" },
-		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
-		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-		{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
-		{ "<leader>fg", "<cmd>Telescope git_branches<cr>", desc = "Find Git branches to checkout" },
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[F]ind [F]iles" },
+		{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "[F]ind with [G]rep" },
+		{ "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "[F]ind [W]ord under cursor" },
+		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[F]ind [B]uffers" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "[F]ind [H]elp Tags" },
+		{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "[F]ind [O]ld Files" },
 	},
 	config = function()
 		local telescope = require("telescope")
