@@ -312,6 +312,8 @@ return {
 				},
 			},
 
+			cspell_ls = {},
+
 			-- Lua
 			lua_ls = {
 				settings = {
