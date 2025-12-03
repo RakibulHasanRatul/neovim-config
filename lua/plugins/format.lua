@@ -16,14 +16,15 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
-				javascript = { "biome" },
-				typescript = { "biome" },
-				javascriptreact = { "biome" },
-				typescriptreact = { "biome" },
-				json = { "biome" },
-				css = { "biome" },
-				html = { "biome" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
+				json = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
 				lua = { "stylua" },
+				markdown = { "prettier" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -37,7 +38,7 @@ return {
 			callback = function()
 				vim.schedule(function()
 					local registry = require("mason-registry")
-					local formatters = { "ruff", "stylua", "biome" }
+					local formatters = { "ruff", "stylua", "prettier" }
 					for _, formatter in ipairs(formatters) do
 						if not registry.is_installed(formatter) then
 							vim.cmd("MasonInstall " .. formatter)

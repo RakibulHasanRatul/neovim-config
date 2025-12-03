@@ -299,7 +299,7 @@ return {
 				filetypes = { "json", "jsonc" },
 			},
 
-			-- Biome (modern alternative to ESLint/Prettier)
+			-- Biome (modern alternative to ESLint)
 			biome = {
 				filetypes = {
 					"javascript",
