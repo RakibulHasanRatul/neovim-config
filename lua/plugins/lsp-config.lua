@@ -14,7 +14,6 @@ return {
 			event = "InsertEnter",
 		},
 	},
-	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		-- Helper function to detect Python venv
 		local function get_python_path()
