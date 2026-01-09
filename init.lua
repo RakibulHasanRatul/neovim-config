@@ -1,6 +1,6 @@
 require("config.core-config")
 require("config.indent-config")
 require("config.keymaps")
-require("config.auto-commands")
 require("config.lazy-config")
+require("config.auto-commands")
 require("config.python")

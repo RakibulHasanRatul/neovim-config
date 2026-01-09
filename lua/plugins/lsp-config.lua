@@ -13,6 +13,9 @@ return {
 			dependencies = { "nvim-lua/plenary.nvim" },
 			event = "InsertEnter",
 		},
+    {
+      "mfussenegger/nvim-jdtls", -- required for jdtls
+    }
 	},
 	config = function()
 		-- Helper function to detect Python venv
@@ -196,8 +199,7 @@ return {
 					"--function-arg-placeholders",
 				},
 			},
-
-			-- Python - basedpyright (better maintained fork of pyright)
+			-- Python - pyright
 			pyright = {
 				settings = {
 					pyright = {
@@ -215,7 +217,6 @@ return {
 					},
 				},
 			},
-
 			-- Ruff for Python linting/formatting
 			ruff = {
 				init_options = {
@@ -225,7 +226,8 @@ return {
 					},
 				},
 			},
-
+      -- Java lsp
+      jdtls = {},
 			-- JavaScript/TypeScript
 			ts_ls = {
 				settings = {
@@ -351,6 +353,9 @@ return {
 			"clang-format",
 			"biome",
 			"ruff",
+       -- Java
+      "google-java-format",
+      "checkstyle",
 		}
 
 		-- Install tools (skipping system-wide installations)
