@@ -13,9 +13,9 @@ return {
 			dependencies = { "nvim-lua/plenary.nvim" },
 			event = "InsertEnter",
 		},
-    {
-      "mfussenegger/nvim-jdtls", -- required for jdtls
-    }
+		{
+			"mfussenegger/nvim-jdtls", -- required for jdtls
+		},
 	},
 	config = function()
 		-- Helper function to detect Python venv
@@ -226,8 +226,8 @@ return {
 					},
 				},
 			},
-      -- Java lsp
-      jdtls = {},
+			-- Java lsp
+			jdtls = {},
 			-- JavaScript/TypeScript
 			ts_ls = {
 				settings = {
@@ -353,9 +353,9 @@ return {
 			"clang-format",
 			"biome",
 			"ruff",
-       -- Java
-      "google-java-format",
-      "checkstyle",
+			-- Java
+			"google-java-format",
+			"checkstyle",
 		}
 
 		-- Install tools (skipping system-wide installations)
