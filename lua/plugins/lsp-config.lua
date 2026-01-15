@@ -212,7 +212,6 @@ return {
 							diagnosticMode = "workspace",
 							autoImportCompletions = true,
 							importFormat = "relativeOrAbsolute",
-							extraPaths = { "./", "./src", "./packages" },
 						},
 					},
 				},
@@ -222,7 +221,7 @@ return {
 				init_options = {
 					settings = {
 						args = {},
-						organizeImports = true, -- <-- add this
+						organizeImports = true,
 					},
 				},
 			},
@@ -308,7 +307,6 @@ return {
 					"json",
 					"jsonc",
 					"typescript",
-					"typescript.tsx",
 					"typescriptreact",
 				},
 			},
@@ -353,7 +351,6 @@ return {
 			"clang-format",
 			"biome",
 			"ruff",
-			-- Java
 			"google-java-format",
 			"checkstyle",
 		}
