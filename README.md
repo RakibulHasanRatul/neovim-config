@@ -29,6 +29,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **File Explorer**: [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
 - **Format**: [conform.nvim](https://github.com/stevearc/conform.nvim)
 - **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
+- **Global Search/Replace**: [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) - VS Code-like search and replace with file filtering
 - **Git Integration**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim), [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim), [git-conflict.nvim](https://github.com/akinsho/git-conflict.nvim), [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - **Icons**: [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - **Indent Guides**: [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim), [guess-indent.nvim](https://github.com/NMAC427/guess-indent.nvim)
@@ -76,8 +77,9 @@ nvim
 
 - **Zero external dependencies** — everything runs inside the config dir
 - **Tuned for terminal workflow** (no GUI dependencies)
-- **Easily hackable**: Each module is self-contained and rea( able
+- **Easily hackable**: Each module is self-contained and readable
 - **Safe public config:** no personal API keys, secrets, or machine-specific paths
+- **VS Code-like search and replace**: Global search and replace with file filtering capabilities
 
 ---
 
@@ -88,6 +90,30 @@ Not much, showing preview from [my own source](https://github.com/RakibulHasanRa
 ![Preview](./preview.png)
 
 ---
+
+## Search and Replace
+
+This config includes multiple search and replace options for different use cases:
+
+### **Advanced Search & Replace (grug-far.nvim)**
+- **`<leader>sr`** - Global search and replace across project (VS Code-like interface)
+- **`<leader>sw`** - Search and replace current word across project
+
+Features:
+- Live preview of changes
+- File filtering with include/exclude patterns
+- Regex support
+- Multi-file operations
+- Easy undo/redo
+
+### **Built-in Search & Replace**
+- **`<leader>fs`** - Simple word substitution in current file (Vim's `%s` command)
+
+### **Telescope Search**
+- **`<leader>fg`** - Live grep across project
+- **`<leader>fw`** - Find word under cursor
+- **`<leader>ff`** - Find files
+- **`<leader>fb`** - Find buffers
 
 ## Note
 
