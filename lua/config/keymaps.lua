@@ -47,8 +47,8 @@ map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to black hole" })
 -- Disable Q (Ex mode)
 map("n", "Q", "<nop>", { desc = "Disabled Ex mode" })
 
--- Search and replace current word
-map("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace word" })
+-- Search and replace current word (built-in Vim command)
+	map("n", "<leader>fs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[F]ind [S]ubstitute (built-in)" })
 
 -- Make current file executable
 map("n", "<leader>mx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
