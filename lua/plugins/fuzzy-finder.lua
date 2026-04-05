@@ -11,7 +11,6 @@ return {
 		{ "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "[F]ind [W]ord under cursor" },
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[F]ind [B]uffers" },
 		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "[F]ind [H]elp Tags" },
-		{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "[F]ind [O]ld Files" },
 	},
 	config = function()
 		local telescope = require("telescope")
