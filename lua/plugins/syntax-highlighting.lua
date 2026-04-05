@@ -1,51 +1,46 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "master",
 	build = ":TSUpdate",
 	lazy = false,
 	config = function()
-		local nvim_treesitter = require("nvim-treesitter")
-		nvim_treesitter.install({
-			"python",
-			"c",
-			"cpp",
-			"java",
-			"bash",
-			"javascript",
-			"typescript",
-			"lua",
-			"rust",
-			"fish",
-			"yaml",
-			"dockerfile",
-			"desktop",
-			"gitignore",
-			"git_config",
-			"json",
-			"jsx",
-			"tsx",
+		require("nvim-treesitter.configs").setup({
+			ensure_installed = {
+				"python",
+				"c",
+				"cpp",
+				"java",
+				"bash",
+				"javascript",
+				"typescript",
+				"lua",
+				"rust",
+				"fish",
+				"yaml",
+				"dockerfile",
+				"desktop",
+				"gitignore",
+				"git_config",
+				"json",
+				"tsx",
+			},
+			sync_install = false,
+			auto_install = true,
+
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false,
+			},
+
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<CR>",
+					node_incremental = "<CR>",
+					scope_incremental = false,
+					node_decremental = "<BS>",
+				},
+			},
 		})
-
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = { "<filetype>" },
-            callback = function()
-                vim.treesitter.start()
-            end,
-        })
-
-        -- Enable incremental selection with Treesitter
-        -- Press <Enter> in Normal/Visual mode to start/expand selection progressively
-        local ok, ts_configs = pcall(require, "nvim-treesitter.configs")
-        if ok and ts_configs then
-            ts_configs.setup({
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "<CR>",        -- Start selection
-                        node_incremental = "<CR>",      -- Expand to next node
-                        node_decremental = "<BS>",       -- Shrink (backspace)
-                    },
-                },
-            })
-        end
 	end,
 }

@@ -67,17 +67,3 @@ vim.o.inccommand = "split"
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 vim.o.confirm = true
-
--- Improve terminal experience: Esc twice exits terminal mode to Normal mode
--- <Esc><Esc> in terminal mode will switch back to normal mode
-vim.api.nvim_set_keymap('t', '<Esc><Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
--- Colorscheme preference (can be switched to 'winteriscoming' or 'cobalt2')
--- The actual color scheme will be loaded if the corresponding plugin is installed.
-vim.g.user_colorscheme = vim.g.user_colorscheme or "winteriscoming"
-pcall(vim.cmd, "colorscheme " .. vim.g.user_colorscheme)
-
--- Optional helper to switch colorschemes at runtime
-function _G.SetColorscheme(name)
-  vim.g.user_colorscheme = name
-  pcall(vim.cmd, "colorscheme " .. name)
-end

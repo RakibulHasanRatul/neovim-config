@@ -65,3 +65,6 @@ map("n", "<Esc>", ":noh<CR>", { desc = "Clear search highlighting" })
 -- Quick quit
 map("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 map("n", "<leader>Q", ":qa!<CR>", { desc = "Quit all without saving" })
+
+-- Terminal mode: Esc twice to exit to Normal mode
+map('t', '<Esc><Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
