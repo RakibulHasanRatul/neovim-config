@@ -4,7 +4,6 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		},
 		keys = {
 			{ "<leader>nl", "<cmd>NoiceLog<cr>", desc = "Noice Log" },
@@ -29,14 +28,14 @@ return {
 					enabled = true,
 					backend = "nui", -- Use nui for completion menu
 				},
-				messages = {
-					enabled = true,
-					view = "notify",
-					view_error = "notify",
-					view_warn = "notify",
-					view_history = "messages",
-					view_search = "virtualtext",
-				},
+			messages = {
+				enabled = true,
+				view = "snacks",
+				view_error = "snacks",
+				view_warn = "snacks",
+				view_history = "messages",
+				view_search = "virtualtext",
+			},
 				lsp = {
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -63,6 +62,15 @@ return {
 					inc_rename = false,
 					lsp_doc_border = true,
 				},
+				views = {
+					notify = {
+						backend = { "snacks", "notify" },
+						fallback = "mini",
+						format = "notify",
+						replace = false,
+						merge = false,
+					},
+				},
 				routes = {
 					{
 						filter = {
@@ -74,27 +82,6 @@ return {
 					},
 				},
 			})
-		end,
-	},
-	{
-		"rcarriga/nvim-notify",
-		event = "VeryLazy",
-		config = function()
-			local notify = require("notify")
-
-			notify.setup({
-				timeout = 2000, -- disappear quickly
-				stages = "fade_in_slide_out",
-				render = "minimal",
-				fps = 60,
-
-				-- Position bottom-right
-				top_down = false, -- flips stack direction
-				background_colour = "#000000", -- transparent-ish background
-			})
-
-			-- Replace default vim.notify with this one
-			vim.notify = notify
 		end,
 	},
 }

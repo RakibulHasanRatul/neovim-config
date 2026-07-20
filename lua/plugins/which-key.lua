@@ -12,6 +12,7 @@ return {
 		wk.add({
 			{ "<leader>f", group = "[F]ind" },
 			{ "<leader>h", group = "Git [H]unk" },
+			{ "<leader>t", group = "[T]oggle" },
 		})
 	end,
 }

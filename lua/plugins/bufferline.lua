@@ -75,10 +75,10 @@ return {
 		-- <leader>Shift-Tab to go to previous buffer
 		vim.keymap.set("n", "<leader><S-Tab>", "<cmd>BufferLineCyclePrev<cr>", opts)
 
-		-- <leader>tx to close current buffer
-		vim.keymap.set("n", "<leader>tx", "<cmd>bdelete<cr>", opts)
+		-- <leader>bx to close current buffer
+		vim.keymap.set("n", "<leader>bx", "<cmd>bdelete<cr>", opts)
 
-		-- Optional but useful: <leader>tp to pin/unpin buffer
-		vim.keymap.set("n", "<leader>tp", "<cmd>BufferLineTogglePin<cr>", opts)
+		-- Optional but useful: <leader>bp to pin/unpin buffer
+		vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", opts)
 	end,
 }
