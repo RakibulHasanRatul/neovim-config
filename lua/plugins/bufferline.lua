@@ -25,14 +25,14 @@ return {
 				end,
 
 				-- Neo-tree offset
-				offsets = {
-					{
-						filetype = "neo-tree",
-						text = "File Explorer",
-						text_align = "center",
-						separator = true,
-					},
+			offsets = {
+				{
+					filetype = "NvimTree",
+					text = "File Explorer",
+					text_align = "center",
+					separator = true,
 				},
+			},
 
 				-- UI Settings
 				separator_style = "thin", -- "slant" | "slope" | "thick" | "thin"

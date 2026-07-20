@@ -26,7 +26,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Comment**: [mini.comment](https://github.com/nvim-mini/mini.comment), [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - **Diagnostics**: [trouble.nvim](https://github.com/folke/trouble.nvim)
 - **Emmet**: [emmet-vim](https://github.com/mattn/emmet-vim)
-- **File Explorer**: [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+- **File Explorer**: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua), [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - **Format**: [conform.nvim](https://github.com/stevearc/conform.nvim)
 - **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 - **Global Search/Replace**: [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) - VS Code-like search and replace with file filtering

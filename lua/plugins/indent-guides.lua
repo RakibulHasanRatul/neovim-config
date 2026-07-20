@@ -17,7 +17,7 @@ return {
 				exclude = {
 					filetypes = {
 						"help",
-						"neo-tree",
+						"NvimTree",
 						"lazy",
 						"mason",
 						"notify",
