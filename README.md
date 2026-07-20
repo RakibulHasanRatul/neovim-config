@@ -18,7 +18,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 
 ## Components Used
 
-- **Ai Windsurf**: [windsurf.nvim](https://github.com/Exafunction/windsurf.nvim), , [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- **AI Completion**: [copilot.vim](https://github.com/github/copilot.vim)
 - **Auto Completion**: [blink.cmp](https://github.com/saghen/blink.cmp), [LuaSnip](https://github.com/L3MON4D3/LuaSnip), [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - **Auto Pairs**: [mini.pairs](https://github.com/nvim-mini/mini.pairs)
 - **Bufferline**: [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
