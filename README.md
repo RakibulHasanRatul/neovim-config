@@ -46,7 +46,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Text Objects**: [mini.ai](https://github.com/nvim-mini/mini.ai)
 - **Todo Comments**: [todo-comments.nvim](https://github.com/folke/todo-comments.nvim),
 - **TS Auto Tag**: [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
-- **UI Components**: [noice.nvim](https://github.com/folke/noice.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [nvim-notify](https://github.com/rcarriga/nvim-notify), [dressing.nvim](https://github.com/stevearc/dressing.nvim)
+- **UI Components**: [noice.nvim](https://github.com/folke/noice.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [nvim-notify](https://github.com/rcarriga/nvim-notify), [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - **Undo Tree**: [undotree](https://github.com/mbbill/undotree)
 - **Vim Tmux Navigator**: [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - **Welcome Screen**: [alpha-nvim](https://github.com/goolord/alpha-nvim),

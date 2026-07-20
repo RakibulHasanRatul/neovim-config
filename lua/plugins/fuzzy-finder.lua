@@ -4,6 +4,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	keys = {
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[F]ind [F]iles" },
@@ -47,6 +48,7 @@ return {
 			},
 		})
 		telescope.load_extension("fzf")
+		telescope.load_extension("ui-select")
 
 		-- Set ripgrep as grep program for better search
 		vim.opt.grepprg = "rg --vimgrep --smart-case -u --hidden"
