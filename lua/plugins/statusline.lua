@@ -44,7 +44,7 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-			extensions = { "NvimTree", "lazy", "fugitive" },
+			extensions = { "nvim-tree", "lazy" },
 		})
 	end,
 }
