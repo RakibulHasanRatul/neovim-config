@@ -48,7 +48,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **TS Auto Tag**: [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - **UI Components**: [noice.nvim](https://github.com/folke/noice.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [snacks.nvim](https://github.com/folke/snacks.nvim), [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - **Undo Tree**: [undotree](https://github.com/mbbill/undotree)
-- **Welcome Screen**: [alpha-nvim](https://github.com/goolord/alpha-nvim),
+- **Dashboard**: [snacks.nvim](https://github.com/folke/snacks.nvim)
 - **Which Key**: [which-key.nvim](https://github.com/folke/which-key.nvim)
 
 ## Installation

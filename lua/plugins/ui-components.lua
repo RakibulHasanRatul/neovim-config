@@ -19,10 +19,12 @@ return {
 			animate = {
 				enabled = true,
 			},
-			notifier = {
-				enabled = true,
-				timeout = 3000,
-			},
+		notifier = {
+			enabled = true,
+			timeout = 3000,
+			margin = { top = 0, right = 1, bottom = 1 },
+			top_down = false,
+		},
 		},
 		keys = {
 			{
