@@ -1,4 +1,69 @@
 return {
+	-- LazyGit via snacks.nvim
+	{
+		"folke/snacks.nvim",
+		---@type snacks.Config
+		opts = {
+			lazygit = {
+				configure = true,
+				config = {
+					os = { editPreset = "nvim-remote" },
+					gui = {
+						nerdFontsVersion = "3",
+					},
+				},
+				theme = {
+					[241] = { fg = "Special" },
+					activeBorderColor = { fg = "MatchParen", bold = true },
+					cherryPickedCommitBgColor = { fg = "Identifier" },
+					cherryPickedCommitFgColor = { fg = "Function" },
+					defaultFgColor = { fg = "Normal" },
+					inactiveBorderColor = { fg = "FloatBorder" },
+					optionsTextColor = { fg = "Function" },
+					searchingActiveBorderColor = { fg = "MatchParen", bold = true },
+					selectedLineBgColor = { bg = "Visual" },
+					unstagedChangesColor = { fg = "DiagnosticError" },
+				},
+			},
+		},
+		keys = {
+			{
+				"<leader>gg",
+				function()
+					Snacks.lazygit.open()
+				end,
+				desc = "LazyGit",
+			},
+			{
+				"<leader>gf",
+				function()
+					Snacks.lazygit.log()
+				end,
+				desc = "LazyGit Repo History",
+			},
+			{
+				"<leader>gF",
+				function()
+					Snacks.lazygit.log_file()
+				end,
+				desc = "LazyGit Current File History",
+			},
+		},
+		config = function(_, opts)
+			require("snacks").setup(opts)
+
+			-- Diffview integration: press <C-d> in lazygit terminal to open Diffview
+			vim.api.nvim_create_autocmd("BufEnter", {
+				pattern = "lazygit",
+				callback = function()
+					vim.keymap.set("t", "<C-d>", function()
+						vim.cmd("DiffviewOpen")
+					end, { buffer = true, desc = "Open Diffview" })
+				end,
+			})
+		end,
+	},
+
 	-- Git signs
 	{
 		"lewis6991/gitsigns.nvim",
@@ -48,37 +113,6 @@ return {
 			})
 		end,
 	},
-	-- LazyGit: Full Git workflow in Neovim
-	{
-		"kdheepak/lazygit.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-			{ "<leader>gf", "<cmd>LazyGitFilter<cr>", desc = "LazyGit File History" },
-			{ "<leader>gF", "<cmd>LazyGitFilterCurrentFile<cr>", desc = "LazyGit Current File History" },
-		},
-		config = function()
-			vim.g.lazygit_floating_window_scaling_factor = 0.9
-			vim.g.lazygit_floating_window_use_plenary = 0
-
-			-- Use neovim remote for opening files from lazygit in nvim
-			vim.g.lazygit_use_neovim_remote = 1
-
-			-- Setup diffview integration
-			-- When you press 'd' on a commit in lazygit, it opens in diffview
-			vim.api.nvim_create_autocmd("BufEnter", {
-				pattern = "lazygit",
-				callback = function()
-					vim.keymap.set("t", "<C-d>", function()
-						vim.cmd("DiffviewOpen")
-					end, { buffer = true, desc = "Open Diffview" })
-				end,
-			})
-		end,
-	},
-
 	-- Git Conflict management
 	{
 		"akinsho/git-conflict.nvim",

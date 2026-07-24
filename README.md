@@ -30,7 +30,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Format**: [conform.nvim](https://github.com/stevearc/conform.nvim)
 - **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 - **Global Search/Replace**: [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) - VS Code-like search and replace with file filtering
-- **Git Integration**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim), [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim), [git-conflict.nvim](https://github.com/akinsho/git-conflict.nvim), [diffview.nvim](https://github.com/sindrets/diffview.nvim)
+- **Git Integration**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim), [snacks.nvim](https://github.com/folke/snacks.nvim) (lazygit), [git-conflict.nvim](https://github.com/akinsho/git-conflict.nvim), [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - **Icons**: [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - **Indent Guides**: [snacks.nvim](https://github.com/folke/snacks.nvim) (built-in indent plugin)
 - **Lazydev**: [lazydev.nvim](https://github.com/folke/lazydev.nvim)
