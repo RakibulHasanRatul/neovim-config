@@ -16,17 +16,7 @@ return {
 			},
 			toggle = {},
 			input = {},
-			zen = {
-				toggles = {
-					dim = true,
-					git_signs = false,
-				},
-				center = true,
-				show = {
-					statusline = false,
-					tabline = false,
-				},
-			},
+
 			notifier = {
 				enabled = true,
 				timeout = 3000,
@@ -36,7 +26,7 @@ return {
 			{ "<leader>tt", function() Snacks.terminal() end, desc = "Toggle Terminal" },
 			{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 			{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-			{ "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+
 			{ "<leader>ts", function() Snacks.toggle.option("spell", { name = "Spelling" }):toggle() end, desc = "Toggle Spelling" },
 			{ "<leader>tw", function() Snacks.toggle.option("wrap", { name = "Wrap" }):toggle() end, desc = "Toggle Wrap" },
 			{ "<leader>tl", function() Snacks.toggle.line_number():toggle() end, desc = "Toggle Line Numbers" },
@@ -46,7 +36,7 @@ return {
 			{ "<leader>th", function() Snacks.toggle.inlay_hints():toggle() end, desc = "Toggle Inlay Hints" },
 			{ "<leader>tb", function() Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):toggle() end, desc = "Toggle Dark Background" },
 			{ "<leader>tg", function() Snacks.toggle.indent():toggle() end, desc = "Toggle Indent Guides" },
-			{ "<leader>tD", function() Snacks.toggle.dim():toggle() end, desc = "Toggle Dim" },
+
 			{ "<leader>tT", function() Snacks.toggle.treesitter():toggle() end, desc = "Toggle Treesitter" },
 		},
 		config = function(_, opts)
