@@ -1,33 +1,14 @@
 return {
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("ibl").setup({
-				indent = {
-					char = "│",
-					tab_char = "│",
-				},
+		"folke/snacks.nvim",
+		---@type snacks.Config
+		opts = {
+			indent = {
+				enabled = true,
 				scope = {
 					enabled = true,
-					show_start = false,
-					show_end = false,
 				},
-				exclude = {
-					filetypes = {
-						"help",
-						"neo-tree",
-						"lazy",
-						"mason",
-						"notify",
-					},
-				},
-			})
-		end,
-	},
-	{
-		"NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
-		event = "InsertEnter",
+			},
+		},
 	},
 }

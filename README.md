@@ -32,7 +32,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Global Search/Replace**: [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) - VS Code-like search and replace with file filtering
 - **Git Integration**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim), [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim), [git-conflict.nvim](https://github.com/akinsho/git-conflict.nvim), [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - **Icons**: [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
-- **Indent Guides**: [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim), [guess-indent.nvim](https://github.com/NMAC427/guess-indent.nvim)
+- **Indent Guides**: [snacks.nvim](https://github.com/folke/snacks.nvim) (built-in indent plugin)
 - **Lazydev**: [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 - **LSP Config**: [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), [mason.nvim](https://github.com/williamboman/mason.nvim), [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim), [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim), [fidget.nvim](https://github.com/j-hui/fidget.nvim), [blink.cmp](https://github.com/saghen/blink.cmp), [nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations), [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
 - **Match Tag**: [vim-matchtag](https://github.com/leafOfTree/vim-matchtag)
