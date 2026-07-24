@@ -26,7 +26,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Comment**: [mini.comment](https://github.com/nvim-mini/mini.comment), [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - **Diagnostics**: [trouble.nvim](https://github.com/folke/trouble.nvim)
 - **Emmet**: [emmet-vim](https://github.com/mattn/emmet-vim)
-- **File Explorer**: [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua), [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- **File Explorer**: [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim), [plenary.nvim](https://github.com/nvim-lua/plenary.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - **Format**: [conform.nvim](https://github.com/stevearc/conform.nvim)
 - **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 - **Global Search/Replace**: [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) - VS Code-like search and replace with file filtering
@@ -48,7 +48,6 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **TS Auto Tag**: [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - **UI Components**: [noice.nvim](https://github.com/folke/noice.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [snacks.nvim](https://github.com/folke/snacks.nvim), [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
 - **Undo Tree**: [undotree](https://github.com/mbbill/undotree)
-- **Vim Tmux Navigator**: [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - **Welcome Screen**: [alpha-nvim](https://github.com/goolord/alpha-nvim),
 - **Which Key**: [which-key.nvim](https://github.com/folke/which-key.nvim)
 

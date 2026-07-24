@@ -48,7 +48,12 @@ map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to black hole" })
 map("n", "Q", "<nop>", { desc = "Disabled Ex mode" })
 
 -- Search and replace current word (built-in Vim command)
-	map("n", "<leader>fs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[F]ind [S]ubstitute (built-in)" })
+map(
+	"n",
+	"<leader>fs",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "[F]ind [S]ubstitute (built-in)" }
+)
 
 -- Make current file executable
 map("n", "<leader>mx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
@@ -67,4 +72,10 @@ map("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 map("n", "<leader>Q", ":qa!<CR>", { desc = "Quit all without saving" })
 
 -- Terminal mode: Esc twice to exit to Normal mode
-map('t', '<Esc><Esc>', [[<C-\><C-N>]], { noremap = true, silent = true })
+map("t", "<Esc><Esc>", [[<C-\><C-N>]], { noremap = true, silent = true })
+
+-- Incremental selection (Neovim 0.12 built-in)
+map("n", "<CR>", "van", { remap = true, desc = "Incremental selection: select" })
+map("n", "<BS>", "vin", { remap = true, desc = "Incremental selection: select inner" })
+map("v", "<CR>", "an", { remap = true, desc = "Incremental selection: expand" })
+map("v", "<BS>", "in", { remap = true, desc = "Incremental selection: shrink" })

@@ -1,55 +1,57 @@
 return {
-	"nvim-tree/nvim-tree.lua",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	"nvim-neo-tree/neo-tree.nvim",
+	branch = "v3.x",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+		"MunifTanjim/nui.nvim",
+	},
 	keys = {
-		{ "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer" },
+		{
+			"<leader>e",
+			function()
+				local current_buf = vim.api.nvim_get_current_buf()
+				local current_filetype = vim.bo[current_buf].filetype
+				if current_filetype == "neo-tree" then
+					vim.cmd("Neotree close")
+				else
+					vim.cmd("Neotree reveal")
+				end
+			end,
+			desc = "Toggle file explorer",
+		},
 	},
 	config = function()
-		require("nvim-tree").setup({
-			view = {
-				side = "right",
+		require("neo-tree").setup({
+			window = {
+				position = "right",
 				width = 50,
 			},
-			renderer = {
-				indent_markers = {
-					enable = true,
+			default_component_configs = {
+				indent = {
+					with_expanders = true,
+					expander_collapsed = "",
+					expander_expanded = "",
 				},
-				icons = {
-					show = {
-						file = true,
-						folder = true,
-						folder_arrow = true,
-						git = true,
-					},
-					glyphs = {
-						symlink = "",
-						git = {
-							unstaged = "~",
-							staged = "+",
-							unmerged = "",
-							renamed = ">",
-							untracked = "●",
-							deleted = "x",
-							ignored = "◌",
-						},
+				git_status = {
+					symbols = {
+						added = "+",
+						deleted = "x",
+						modified = "~",
+						renamed = ">",
+						untracked = "●",
+						ignored = "◌",
+						unstaged = "",
+						staged = "",
+						conflict = "",
 					},
 				},
 			},
-		git = {
-			enable = true,
-		},
-		filters = {
-				dotfiles = false,
-				git_clean = false,
-				no_buffer = false,
-				custom = {},
-			},
-			actions = {
-				open_file = {
-					quit_on_open = false,
-					window_picker = {
-						enable = true,
-					},
+			filesystem = {
+				filtered_items = {
+					visible = true,
+					hide_dotfiles = false,
+					hide_gitignored = false,
 				},
 			},
 		})

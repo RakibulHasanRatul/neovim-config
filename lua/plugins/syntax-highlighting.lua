@@ -1,46 +1,34 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	branch = "master",
 	build = ":TSUpdate",
 	lazy = false,
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"python",
-				"c",
-				"cpp",
-				"java",
-				"bash",
-				"javascript",
-				"typescript",
-				"lua",
-				"rust",
-				"fish",
-				"yaml",
-				"dockerfile",
-				"desktop",
-				"gitignore",
-				"git_config",
-				"json",
-				"tsx",
-			},
-			sync_install = false,
-			auto_install = true,
-
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-			},
-
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<CR>",
-					node_incremental = "<CR>",
-					scope_incremental = false,
-					node_decremental = "<BS>",
-				},
-			},
+		require("nvim-treesitter").install({
+			"python",
+			"c",
+			"cpp",
+			"java",
+			"bash",
+			"javascript",
+			"typescript",
+			"lua",
+			"rust",
+			"fish",
+			"yaml",
+			"dockerfile",
+			"desktop",
+			"gitignore",
+			"git_config",
+			"json",
+			"tsx",
 		})
+
+		-- Incremental selection: use built-in Neovim 0.12 text objects
+		--   an - select parent node
+		--   in - select child node
+		--   ]n - next node
+		--   [n - previous node
+		--   ]N - expand to next node
+		--   [N - shrink to previous node
 	end,
 }

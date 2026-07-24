@@ -16,28 +16,104 @@ return {
 			},
 			toggle = {},
 			input = {},
-
+			animate = {
+				enabled = true,
+			},
 			notifier = {
 				enabled = true,
 				timeout = 3000,
 			},
 		},
 		keys = {
-			{ "<leader>tt", function() Snacks.terminal() end, desc = "Toggle Terminal" },
-			{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-			{ "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+			{
+				"<leader>tt",
+				function()
+					Snacks.terminal()
+				end,
+				desc = "Toggle Terminal",
+			},
+			{
+				"<leader>.",
+				function()
+					Snacks.scratch()
+				end,
+				desc = "Toggle Scratch Buffer",
+			},
+			{
+				"<leader>S",
+				function()
+					Snacks.scratch.select()
+				end,
+				desc = "Select Scratch Buffer",
+			},
 
-			{ "<leader>ts", function() Snacks.toggle.option("spell", { name = "Spelling" }):toggle() end, desc = "Toggle Spelling" },
-			{ "<leader>tw", function() Snacks.toggle.option("wrap", { name = "Wrap" }):toggle() end, desc = "Toggle Wrap" },
-			{ "<leader>tl", function() Snacks.toggle.line_number():toggle() end, desc = "Toggle Line Numbers" },
-			{ "<leader>tn", function() Snacks.toggle.option("relativenumber", { name = "Relative Number" }):toggle() end, desc = "Toggle Relative Numbers" },
-			{ "<leader>td", function() Snacks.toggle.diagnostics():toggle() end, desc = "Toggle Diagnostics" },
-			{ "<leader>tc", function() Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):toggle() end, desc = "Toggle Conceal Level" },
-			{ "<leader>th", function() Snacks.toggle.inlay_hints():toggle() end, desc = "Toggle Inlay Hints" },
-			{ "<leader>tb", function() Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):toggle() end, desc = "Toggle Dark Background" },
-			{ "<leader>tg", function() Snacks.toggle.indent():toggle() end, desc = "Toggle Indent Guides" },
-
-			{ "<leader>tT", function() Snacks.toggle.treesitter():toggle() end, desc = "Toggle Treesitter" },
+			{
+				"<leader>ts",
+				function()
+					Snacks.toggle.option("spell", { name = "Spelling" }):toggle()
+				end,
+				desc = "Toggle Spelling",
+			},
+			{
+				"<leader>tw",
+				function()
+					Snacks.toggle.option("wrap", { name = "Wrap" }):toggle()
+				end,
+				desc = "Toggle Wrap",
+			},
+			{
+				"<leader>tl",
+				function()
+					Snacks.toggle.line_number():toggle()
+				end,
+				desc = "Toggle Line Numbers",
+			},
+			{
+				"<leader>tn",
+				function()
+					Snacks.toggle.option("relativenumber", { name = "Relative Number" }):toggle()
+				end,
+				desc = "Toggle Relative Numbers",
+			},
+			{
+				"<leader>td",
+				function()
+					Snacks.toggle.diagnostics():toggle()
+				end,
+				desc = "Toggle Diagnostics",
+			},
+			{
+				"<leader>tc",
+				function()
+					Snacks.toggle
+						.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+						:toggle()
+				end,
+				desc = "Toggle Conceal Level",
+			},
+			{
+				"<leader>th",
+				function()
+					Snacks.toggle.inlay_hints():toggle()
+				end,
+				desc = "Toggle Inlay Hints",
+			},
+			{
+				"<leader>tb",
+				function()
+					Snacks.toggle
+						.option("background", { off = "light", on = "dark", name = "Dark Background" })
+						:toggle()
+				end,
+				desc = "Toggle Dark Background",
+			},
+			{
+				"<leader>tg",
+				function()
+					Snacks.toggle.indent():toggle()
+				end,
+				desc = "Toggle Indent Guides",
+			},
 		},
 		config = function(_, opts)
 			require("snacks").setup(opts)
@@ -72,14 +148,14 @@ return {
 					enabled = true,
 					backend = "nui", -- Use nui for completion menu
 				},
-			messages = {
-				enabled = true,
-				view = "snacks",
-				view_error = "snacks",
-				view_warn = "snacks",
-				view_history = "messages",
-				view_search = "virtualtext",
-			},
+				messages = {
+					enabled = true,
+					view = "snacks",
+					view_error = "snacks",
+					view_warn = "snacks",
+					view_history = "messages",
+					view_search = "virtualtext",
+				},
 				lsp = {
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
