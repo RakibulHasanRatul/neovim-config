@@ -16,15 +16,12 @@ return {
 			},
 			toggle = {},
 			input = {},
-			animate = {
+			notifier = {
 				enabled = true,
+				timeout = 3000,
+				margin = { top = 0, right = 1, bottom = 1 },
+				top_down = false,
 			},
-		notifier = {
-			enabled = true,
-			timeout = 3000,
-			margin = { top = 0, right = 1, bottom = 1 },
-			top_down = false,
-		},
 		},
 		keys = {
 			{
