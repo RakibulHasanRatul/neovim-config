@@ -74,6 +74,12 @@ map("n", "<leader>Q", ":qa!<CR>", { desc = "Quit all without saving" })
 -- Terminal mode: Esc twice to exit to Normal mode
 map("t", "<Esc><Esc>", [[<C-\><C-N>]], { noremap = true, silent = true })
 
+-- Undo tree (built-in in Neovim 0.12)
+map("n", "<leader>u", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end, { desc = "Toggle Undo Tree" })
+
 -- Incremental selection (Neovim 0.12 built-in)
 map("n", "<CR>", "van", { remap = true, desc = "Incremental selection: select" })
 map("n", "<BS>", "vin", { remap = true, desc = "Incremental selection: select inner" })
