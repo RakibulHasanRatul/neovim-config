@@ -122,7 +122,7 @@ return {
 				end, { buffer = event.buf, desc = "Next diagnostic" })
 				map("n", "<leader>ld", vim.diagnostic.open_float, { buffer = event.buf, desc = "Show diagnostic" })
 				map("n", "<leader>cl", "<cmd>LspInfo<cr>", { buffer = event.buf, desc = "LSP Info" })
-				map("n", "<leader>lr", "<cmd>LspRestart<cr>", { buffer = event.buf, desc = "Restart LSP" })
+				map("n", "<leader>lr", "<cmd>lsp restart<cr>", { buffer = event.buf, desc = "Restart LSP" })
 
 				-- Highlight references under cursor
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -151,7 +151,6 @@ return {
 						end,
 					})
 				end
-
 			end,
 		})
 
