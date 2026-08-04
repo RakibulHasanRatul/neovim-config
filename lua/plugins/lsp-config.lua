@@ -282,11 +282,6 @@ return {
 			-- HTML
 			html = {},
 
-			-- CSS
-			cssls = {
-				filetypes = { "css", "scss", "less" },
-			},
-
 			-- JSON
 			jsonls = {
 				filetypes = { "json", "jsonc" },
@@ -294,14 +289,37 @@ return {
 
 			-- Biome (modern alternative to ESLint)
 			biome = {
+				cmd = { "biome", "lsp-proxy" },
 				filetypes = {
+					"astro",
+					"css",
+					"graphql",
 					"javascript",
 					"javascriptreact",
 					"json",
 					"jsonc",
+					"svelte",
 					"typescript",
 					"typescriptreact",
+					"vue",
 				},
+				root_dir = function(fname)
+					local root_files = { "biome.json", "biome.jsonc" }
+					root_files = require("lspconfig.util").insert_package_json(root_files, "biome", fname)
+					return vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1])
+				end,
+				single_file_support = false,
+				-- Force workspace config reload on startup
+				on_init = function(client, initialize_result)
+					-- Trigger workspace/didChangeConfiguration to reload biome.json
+					client.notify("workspace/didChangeConfiguration", { settings = {} })
+				end,
+				-- Ensure we use system-wide biome if available
+				on_new_config = function(new_config, new_root_dir)
+					if vim.fn.executable("biome") == 1 then
+						new_config.cmd = { "biome", "lsp-proxy" }
+					end
+				end,
 			},
 
 			cspell_ls = {},
