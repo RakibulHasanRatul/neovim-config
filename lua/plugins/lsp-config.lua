@@ -18,55 +18,33 @@ return {
 		},
 	},
 	config = function()
-		-- Helper function to detect Python venv
-		local function get_python_path()
-			local venv_names = { ".venv", "venv", "env", ".env" }
-			for _, name in ipairs(venv_names) do
-				local path = vim.fn.getcwd() .. "/" .. name .. "/bin/python"
-				if vim.fn.executable(path) == 1 then
-					return path
+		-- Server-specific configs live in after/lsp/<name>.lua and are merged
+		-- automatically on top of the defaults shipped by nvim-lspconfig.
+
+		-- Check whether an executable exists on the system PATH, ignoring
+		-- mason's own bin dir (which mason prepends to PATH and would otherwise
+		-- shadow system-wide installs).
+		local function system_wide(exe)
+			local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
+			for dir in vim.env.PATH:gmatch("[^:]+") do
+				if dir ~= mason_bin and vim.fn.executable(dir .. "/" .. exe) == 1 then
+					return true
 				end
 			end
-			return nil
+			return false
 		end
 
-		-- Helper function to skip system-wide installations for tools
-		local function skip_if_system_wide_tools(tools)
-			local mason_registry = require("mason-registry")
-			return vim.tbl_filter(function(tool_name)
-				local ok, pkg = pcall(mason_registry.get_package, tool_name)
-				if not ok then
-					return true
+		-- Every enabled server has a config file in after/lsp/<name>.lua, so
+		-- the file names are the single source of truth for the server list.
+		local function lsp_servers()
+			local names = {}
+			for file in vim.fs.dir(vim.fn.stdpath("config") .. "/after/lsp") do
+				if file:match("%.lua$") then
+					table.insert(names, (file:gsub("%.lua$", "")))
 				end
-				-- Check if any executable from this package exists on PATH
-				for _, exe in ipairs(pkg.spec.bin or {}) do
-					if vim.fn.executable(exe) == 1 then
-						return false
-					end
-				end
-				return true
-			end, tools)
-		end
-
-		-- Helper function to skip system-wide installations for LSP servers
-		local function skip_if_system_wide_lsp(servers)
-			local mason_registry = require("mason-registry")
-			return vim.tbl_filter(function(server_name)
-				local pkg_name = require("mason-lspconfig").get_mappings().lspconfig_to_package[server_name]
-				if not pkg_name then
-					return true
-				end -- not handled by Mason
-				local ok, pkg = pcall(mason_registry.get_package, pkg_name)
-				if not ok then
-					return true
-				end
-				for _, exe in ipairs(pkg.spec.bin or {}) do
-					if vim.fn.executable(exe) == 1 then
-						return false
-					end
-				end
-				return true
-			end, servers)
+			end
+			table.sort(names)
+			return names
 		end
 
 		-- LspAttach autocommand for keymaps
@@ -176,181 +154,54 @@ return {
 			},
 		})
 
-		-- Get capabilities from blink.cmp
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- Global defaults: share blink.cmp completion capabilities with every server
+		vim.lsp.config("*", {
+			capabilities = require("blink.cmp").get_lsp_capabilities(),
+		})
 
-		-- LSP server configurations (cherry-picked the best settings from your config)
-		local servers = {
-			-- C/C++
-			clangd = {
-				cmd = {
-					"clangd",
-					"--background-index",
-					"--clang-tidy",
-					"--header-insertion=iwyu",
-					"--completion-style=detailed",
-					"--function-arg-placeholders",
-				},
-			},
-			-- Python - pyright
-			pyright = {
-				settings = {
-					pyright = {
-						disableOrganizeImports = true,
-						pythonPath = get_python_path(),
-						analysis = {
-							typeCheckingMode = "strict",
-							autoSearchPaths = true,
-							useLibraryCodeForTypes = true,
-							diagnosticMode = "workspace",
-							autoImportCompletions = true,
-							importFormat = "relativeOrAbsolute",
-						},
-					},
-				},
-			},
-			-- Ruff for Python linting/formatting
-			ruff = {
-				init_options = {
-					settings = {
-						args = {},
-						organizeImports = true,
-					},
-				},
-			},
-			-- Java lsp
-			jdtls = {},
-			-- JavaScript/TypeScript
-			ts_ls = {
-				settings = {
-					typescript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
-						preferences = {
-							importModuleSpecifierPreference = "non-relative",
-							jsxAttributeCompletionStyle = "auto",
-							includePackageJsonAutoImports = "auto",
-						},
-						suggest = {
-							includeCompletionsForModuleExports = true,
-							autoImports = true,
-						},
-					},
-					javascript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
-						preferences = {
-							importModuleSpecifierPreference = "non-relative",
-							jsxAttributeCompletionStyle = "auto",
-							includePackageJsonAutoImports = "auto",
-						},
-						suggest = {
-							includeCompletionsForModuleExports = true,
-							autoImports = true,
-						},
-					},
-				},
-			},
+		-- Helper function to skip system-wide installations for tools
+		local function skip_if_system_wide_tools(tools)
+			local mason_registry = require("mason-registry")
+			return vim.tbl_filter(function(tool_name)
+				local ok, pkg = pcall(mason_registry.get_package, tool_name)
+				if not ok then
+					return true
+				end
+				-- Check if any executable from this package exists on PATH
+				for _, exe in ipairs(pkg.spec.bin or {}) do
+					if system_wide(exe) then
+						return false
+					end
+				end
+				return true
+			end, tools)
+		end
 
-			-- Tailwind CSS
-			tailwindcss = {
-				filetypes = {
-					"html",
-					"css",
-					"scss",
-					"javascript",
-					"javascriptreact",
-					"typescript",
-					"typescriptreact",
-				},
-			},
+		-- Helper function to skip system-wide installations for LSP servers
+		local function skip_if_system_wide_lsp(servers)
+			local mason_registry = require("mason-registry")
+			return vim.tbl_filter(function(server_name)
+				local pkg_name = require("mason-lspconfig").get_mappings().lspconfig_to_package[server_name]
+				if not pkg_name then
+					return true
+				end -- not handled by Mason
+				local ok, pkg = pcall(mason_registry.get_package, pkg_name)
+				if not ok then
+					return true
+				end
+				for _, exe in ipairs(pkg.spec.bin or {}) do
+					if system_wide(exe) then
+						return false
+					end
+				end
+				return true
+			end, servers)
+		end
 
-			-- HTML
-			html = {},
-
-			-- JSON
-			jsonls = {
-				filetypes = { "json", "jsonc" },
-			},
-
-			-- Biome (modern alternative to ESLint)
-			biome = {
-				cmd = { "biome", "lsp-proxy" },
-				filetypes = {
-					"astro",
-					"css",
-					"graphql",
-					"javascript",
-					"javascriptreact",
-					"json",
-					"jsonc",
-					"svelte",
-					"typescript",
-					"typescriptreact",
-					"vue",
-				},
-				root_dir = function(fname)
-					local root_files = { "biome.json", "biome.jsonc" }
-					root_files = require("lspconfig.util").insert_package_json(root_files, "biome", fname)
-					return vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1])
-				end,
-				single_file_support = false,
-			},
-
-			cspell_ls = {},
-
-			-- Lua
-			lua_ls = {
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						completion = {
-							callSnippet = "Replace",
-						},
-						diagnostics = {
-							globals = { "vim", "hl" },
-						},
-						workspace = {
-							library = {
-								vim.env.VIMRUNTIME,
-								"${3rd}/luv/library",
-								"${3rd}/busted/library",
-							},
-							checkThirdParty = false,
-						},
-						telemetry = {
-							enable = false,
-						},
-						format = {
-							enable = false, -- Use stylua instead
-						},
-					},
-				},
-			},
-			hyprls = {
-				settings = {
-					hyprls = {
-						preferIgnoreFile = false,
-					},
-				},
-			},
-		}
+		-- Servers are derived from after/lsp/*.lua, so adding a server is just
+		-- creating its config file. Servers without custom settings (jdtls, html,
+		-- cspell_ls) use `return {}` and rely on the nvim-lspconfig defaults.
+		local servers = lsp_servers()
 
 		-- Tools to install (formatters, linters, etc.)
 		local tools = {
@@ -370,17 +221,16 @@ return {
 			run_on_start = true,
 		})
 
-		-- Setup mason-lspconfig with automatic installation (skipping system-wide)
+		-- Install LSP servers with Mason (skipping system-wide installations).
+		-- automatic_enable is disabled since we enable all configured servers
+		-- explicitly below, which also covers system-wide installations.
 		require("mason-lspconfig").setup({
-			ensure_installed = skip_if_system_wide_lsp(vim.tbl_keys(servers)),
-			automatic_installation = true,
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
+			ensure_installed = skip_if_system_wide_lsp(servers),
+			automatic_enable = false,
 		})
+
+		-- Enable LSP servers: nvim auto-starts them when a matching filetype
+		-- (and root dir, if required) is detected.
+		vim.lsp.enable(servers)
 	end,
 }
