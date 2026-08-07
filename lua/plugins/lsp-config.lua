@@ -309,17 +309,6 @@ return {
 					return vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1])
 				end,
 				single_file_support = false,
-				-- Force workspace config reload on startup
-				on_init = function(client, initialize_result)
-					-- Trigger workspace/didChangeConfiguration to reload biome.json
-					client.notify("workspace/didChangeConfiguration", { settings = {} })
-				end,
-				-- Ensure we use system-wide biome if available
-				on_new_config = function(new_config, new_root_dir)
-					if vim.fn.executable("biome") == 1 then
-						new_config.cmd = { "biome", "lsp-proxy" }
-					end
-				end,
 			},
 
 			cspell_ls = {},
@@ -335,7 +324,7 @@ return {
 							callSnippet = "Replace",
 						},
 						diagnostics = {
-							globals = { "vim" },
+							globals = { "vim", "hl" },
 						},
 						workspace = {
 							library = {
@@ -354,6 +343,13 @@ return {
 					},
 				},
 			},
+			hyprls = {
+				settings = {
+					hyprls = {
+						preferIgnoreFile = false,
+					},
+				},
+			},
 		}
 
 		-- Tools to install (formatters, linters, etc.)
@@ -364,6 +360,7 @@ return {
 			"ruff",
 			"google-java-format",
 			"checkstyle",
+			"hyprls",
 		}
 
 		-- Install tools (skipping system-wide installations)

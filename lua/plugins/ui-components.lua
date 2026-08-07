@@ -45,14 +45,6 @@ return {
 				end,
 				desc = "Select Scratch Buffer",
 			},
-
-			{
-				"<leader>ts",
-				function()
-					Snacks.toggle.option("spell", { name = "Spelling" }):toggle()
-				end,
-				desc = "Toggle Spelling",
-			},
 			{
 				"<leader>tw",
 				function()
