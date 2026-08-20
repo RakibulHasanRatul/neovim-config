@@ -60,21 +60,17 @@ return {
 				map("n", "gr", vim.lsp.buf.references, { buffer = event.buf, desc = "[G]oto [R]eferences" })
 				map("n", "gt", vim.lsp.buf.type_definition, { buffer = event.buf, desc = "[G]oto [T]ype Definition" })
 
-				-- Document symbols
-				map(
-					{ "n", "v" },
-					"gO",
-					require("telescope.builtin").lsp_document_symbols,
-					{ buffer = event.buf, desc = "Open Document Symbols" }
-				)
+			-- Document symbols
+			map({ "n", "v" }, "gO", function()
+				---@cast Snacks Snacks
+				Snacks.picker.lsp_symbols()
+			end, { buffer = event.buf, desc = "Open Document Symbols" })
 
-				-- Workspace symbols
-				map(
-					{ "n", "v" },
-					"gW",
-					require("telescope.builtin").lsp_dynamic_workspace_symbols,
-					{ buffer = event.buf, desc = "Open Workspace Symbols" }
-				)
+			-- Workspace symbols
+			map({ "n", "v" }, "gW", function()
+				---@cast Snacks Snacks
+				Snacks.picker.lsp_workspace_symbols()
+			end, { buffer = event.buf, desc = "Open Workspace Symbols" })
 
 				-- Documentation
 				map("n", "<leader>k", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover documentation" })
