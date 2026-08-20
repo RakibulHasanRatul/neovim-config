@@ -23,5 +23,18 @@ return {
 		})
 
 		vim.cmd("colorscheme carbonfox") -- load colorscheme
+
+		-- Force undercurl on diagnostics (herdr doesn't advertise terminal capabilities)
+		vim.api.nvim_create_autocmd("VimEnter", {
+			callback = function()
+				for _, sev in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+					local hl = vim.api.nvim_get_hl(0, { name = "DiagnosticUnderline" .. sev })
+					hl.underline = nil
+					hl.undercurl = true
+					vim.api.nvim_set_hl(0, "DiagnosticUnderline" .. sev, hl)
+				end
+			end,
+			once = true,
+		})
 	end,
 }
