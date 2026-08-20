@@ -23,6 +23,8 @@ return {
 				json = { "biome" },
 				css = { "biome" },
 				html = { "biome" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
 				lua = { "stylua" },
 				markdown = { "markdownlint" },
 			},
@@ -38,7 +40,7 @@ return {
 			callback = function()
 				vim.schedule(function()
 					local registry = require("mason-registry")
-					local formatters = { "ruff", "stylua", "biome", "markdownlint" }
+					local formatters = { "ruff", "stylua", "biome", "markdownlint", "clang-format" }
 					for _, formatter in ipairs(formatters) do
 						if not registry.is_installed(formatter) then
 							vim.cmd("MasonInstall " .. formatter)
