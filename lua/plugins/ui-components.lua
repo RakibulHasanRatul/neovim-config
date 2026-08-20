@@ -5,6 +5,7 @@ return {
 		lazy = false,
 		---@type snacks.Config
 		opts = {
+			image = {},
 			terminal = {},
 			scratch = {
 				autowrite = true,

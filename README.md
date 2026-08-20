@@ -28,10 +28,11 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Emmet**: [emmet-vim](https://github.com/mattn/emmet-vim)
 - **File Explorer**: [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim), [plenary.nvim](https://github.com/nvim-lua/plenary.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
 - **Format**: [conform.nvim](https://github.com/stevearc/conform.nvim)
-- **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim), [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
+- **Fuzzy Finder**: [snacks.nvim](https://github.com/folke/snacks.nvim) (picker)
 - **Global Search/Replace**: [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) - VS Code-like search and replace with file filtering
 - **Git Integration**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim), [snacks.nvim](https://github.com/folke/snacks.nvim) (lazygit), [git-conflict.nvim](https://github.com/akinsho/git-conflict.nvim), [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - **Icons**: [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)
+- **Image Viewer**: [snacks.nvim](https://github.com/folke/snacks.nvim) (image plugin, Kitty graphics protocol)
 - **Indent Guides**: [snacks.nvim](https://github.com/folke/snacks.nvim) (built-in indent plugin)
 - **Lazydev**: [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 - **LSP Config**: [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), [mason.nvim](https://github.com/williamboman/mason.nvim), [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim), [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim), [fidget.nvim](https://github.com/j-hui/fidget.nvim), [blink.cmp](https://github.com/saghen/blink.cmp), [nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations), [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)
@@ -46,7 +47,7 @@ It’s not meant to be a universal distro, just _my personal flow_ — but if yo
 - **Text Objects**: [mini.ai](https://github.com/nvim-mini/mini.ai)
 - **Todo Comments**: [todo-comments.nvim](https://github.com/folke/todo-comments.nvim),
 - **TS Auto Tag**: [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
-- **UI Components**: [noice.nvim](https://github.com/folke/noice.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [snacks.nvim](https://github.com/folke/snacks.nvim), [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)
+- **UI Components**: [noice.nvim](https://github.com/folke/noice.nvim), [nui.nvim](https://github.com/MunifTanjim/nui.nvim), [snacks.nvim](https://github.com/folke/snacks.nvim)
 - **Undo Tree**: Built-in undotree (Neovim 0.12+)
 - **Dashboard**: [snacks.nvim](https://github.com/folke/snacks.nvim)
 - **Which Key**: [which-key.nvim](https://github.com/folke/which-key.nvim)
@@ -108,11 +109,9 @@ Features:
 ### **Built-in Search & Replace**
 - **`<leader>fs`** - Simple word substitution in current file (Vim's `%s` command)
 
-### **Telescope Search**
+### **Snacks Picker**
+- **`<leader>ff`** - Find files (with image preview)
 - **`<leader>fg`** - Live grep across project
-- **`<leader>fw`** - Find word under cursor
-- **`<leader>ff`** - Find files
-- **`<leader>fb`** - Find buffers
 
 ## Note
 

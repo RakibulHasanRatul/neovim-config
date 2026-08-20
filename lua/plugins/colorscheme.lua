@@ -1,14 +1,27 @@
 return {
-	"projekt0n/github-nvim-theme",
-	name = "github-theme",
-	lazy = false, -- make sure we load this during startup if it is your main colorscheme
-	priority = 1000, -- make sure to load this before all the other start plugins
+	"EdenEast/nightfox.nvim",
+	lazy = false,
+	priority = 1000,
 	config = function()
-		require("github-theme").setup({
-			-- ...
+		require("nightfox").setup({
+			options = {
+				transparent = false,
+				terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+				styles = {
+					comments = "italic",
+					conditionals = "italic",
+					constants = "NONE",
+					functions = "italic",
+					keywords = "italic",
+					numbers = "NONE",
+					operators = "italic",
+					strings = "NONE",
+					types = "italic",
+					variables = "NONE",
+				},
+			},
 		})
 
-		vim.cmd("colorscheme github_dark_default")
+		vim.cmd("colorscheme carbonfox") -- load colorscheme
 	end,
 }
-
