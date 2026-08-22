@@ -4,7 +4,15 @@ return {
 		"folke/snacks.nvim",
 		---@type snacks.Config
 		opts = {
-			picker = {},
+			picker = {
+				win = {
+					input = {
+						keys = {
+							["<Esc>"] = { "close", mode = { "n", "i" } },
+						},
+					},
+				},
+			},
 		},
 		keys = {
 			{
