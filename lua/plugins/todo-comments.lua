@@ -1,10 +1,15 @@
 return {
 	"folke/todo-comments.nvim",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = { "folke/snacks.nvim" },
 	event = { "BufReadPost", "BufNewFile" },
 	keys = {
-		{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
-		{ "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Find TODOs" },
+		{
+			"<leader>ft",
+			function()
+				Snacks.picker.todo_comments()
+			end,
+			desc = "Find TODOs",
+		},
 		{
 			"]t",
 			function()
@@ -41,17 +46,6 @@ return {
 				after = "fg",
 				pattern = [[.*<(KEYWORDS)\s*:]],
 				comments_only = true,
-			},
-			search = {
-				command = "rg",
-				args = {
-					"--color=never",
-					"--no-heading",
-					"--with-filename",
-					"--line-number",
-					"--column",
-				},
-				pattern = [[\b(KEYWORDS):]],
 			},
 		})
 	end,

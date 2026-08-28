@@ -7,6 +7,7 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
 		"saghen/blink.cmp",
+		"folke/snacks.nvim",
 		-- LSP file operations support
 		{
 			"antosha417/nvim-lsp-file-operations",
